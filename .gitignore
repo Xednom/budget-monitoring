@@ -1,0 +1,9 @@
+db.sqlite3
+*.py[co]
+.idea
+*.__pycache__
+*.vscode
+db.sqlite3
+*.log
+media
+staticfiles
