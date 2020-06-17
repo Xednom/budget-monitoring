@@ -16,7 +16,7 @@ class BaseModel(models.Model):
 
 
 class Other(BaseModel):
-    name = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
+    name = models.CharField(max_length=150, null=True, blank=True)
     budget = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
     expense = models.DecimalField(max_digits=9, decimal_places=2, default=0.00)
 
