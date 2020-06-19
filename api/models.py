@@ -36,7 +36,7 @@ class Income(BaseModel):
     transfer_from_savings = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     total_income = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     users = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT)
-    other = models.ManyToManyField(Other)
+    other = models.ManyToManyField(Other, related_name="income_other")
 
     class Meta:
         ordering = ['-created_at']
@@ -69,7 +69,7 @@ class HomeExpense(BaseModel):
     improvements = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     total_home_expenses = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     users = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT)
-    other = models.ManyToManyField(Other)
+    other = models.ManyToManyField(Other, related_name="home_expense_other")
 
     class Meta:
         ordering = ['-created_at']
@@ -98,7 +98,7 @@ class DailyLiving(BaseModel):
     salon = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     total_daily_expenses = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     users = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT)
-    other = models.ManyToManyField(Other)
+    other = models.ManyToManyField(Other, related_name="daily_living_other")
 
     class Meta: 
         ordering = ['-created_at']
@@ -124,7 +124,7 @@ class Saving(BaseModel):
     education_funds = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     total_savings = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     users = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT)
-    other = models.ManyToManyField(Other)
+    other = models.ManyToManyField(Other, related_name="saving_other")
 
     class Meta: 
         ordering = ['-created_at']
@@ -149,7 +149,7 @@ class Insurance(BaseModel):
     life = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     total_insurance = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, default=0.00)
     users = models.ForeignKey(User, null=True, blank=True, on_delete=models.PROTECT)
-    other = models.ManyToManyField(Other)
+    other = models.ManyToManyField(Other, related_name="insurance_other")
 
     class Meta: 
         ordering = ['-created_at']
@@ -159,7 +159,7 @@ class Insurance(BaseModel):
         return total_saving
     
     def save(self, *args, **kwargs):
-        self.total_savings = self.calculate_total_savings
+        self.total_savings = self.calculate_total_insurance()
         super().save(*args, **kwargs)
     
     def __str__(self):
