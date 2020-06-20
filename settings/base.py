@@ -50,7 +50,7 @@ THIRD_PARTY_APPS = [
     'rest_framework'
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS    
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 
 MIDDLEWARE = [
@@ -144,13 +144,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = (
-    os.path.join(BASE_DIR, 'static')
-)
-
 # User model
 AUTH_USER_MODEL = 'users.User'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles')
+    os.path.join(BASE_DIR, 'static')
 ]
