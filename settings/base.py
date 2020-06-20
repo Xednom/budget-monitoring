@@ -54,6 +54,7 @@ INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,6 +150,5 @@ AUTH_USER_MODEL = 'users.User'
 
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'staticfiles'),
     os.path.join(BASE_DIR, 'static'),
 )
