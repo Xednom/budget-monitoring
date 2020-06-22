@@ -15,6 +15,9 @@ django-filter = "*"
 drf-writable-nested = "*"
 gunicorn = "*"
 whitenoise = "*"
+django-crispy-forms = "*"
+django-allauth = "*"
+django-rest-auth = "*"
 
 [requires]
 python_version = "3.8"
