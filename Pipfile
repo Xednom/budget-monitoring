@@ -18,6 +18,8 @@ whitenoise = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
 django-rest-auth = "*"
+django-webpack-loader = "*"
+django-registration = "*"
 
 [requires]
 python_version = "3.8"

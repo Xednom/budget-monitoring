@@ -54,7 +54,8 @@ THIRD_PARTY_APPS = [
     'rest_auth',
     'rest_auth.registration',
     'django_filters',
-    'crispy_forms'
+    'crispy_forms',
+    'webpack_loader'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -109,6 +110,13 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+}
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.json'),
+    }
 }
 
 WSGI_APPLICATION = 'budget_monitoring.wsgi.application'
