@@ -29,7 +29,6 @@ env.read_env(env_file)
 SECRET_KEY = env.str('SECRET_KEY')
 
 
-
 # Application definition
 
 DJANGO_APPS = [
@@ -39,6 +38,7 @@ DJANGO_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
 
 LOCAL_APPS = [
@@ -47,7 +47,15 @@ LOCAL_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken',
+    'allauth',
+    'allauth.account',
+    'rest_auth',
+    'rest_auth.registration',
+    'django_filters',
+    'crispy_forms',
+    'webpack_loader'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
@@ -69,7 +77,7 @@ ROOT_URLCONF = 'budget_monitoring.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,6 +110,13 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
+}
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'BUNDLE_DIR_NAME': 'dist/',
+        'STATS_FILE': os.path.join(BASE_DIR, 'frontend', 'webpack-stats.json'),
+    }
 }
 
 WSGI_APPLICATION = 'budget_monitoring.wsgi.application'
@@ -148,7 +163,28 @@ STATIC_URL = '/static/'
 # User model
 AUTH_USER_MODEL = 'users.User'
 
+# Crispy forms 
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+# Login redirects
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+SITE_ID = 1
+
+# Expiration day(s) for the password reset link
+PASSWORD_RESET_EXPIRATION = 1
+
+# Email send credentials
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = "xednom@gmail.com"
+EMAIL_HOST_PASSWORD = "ezrizpxmjcpoqndm"
+EMAIL_USE_TLS = True
