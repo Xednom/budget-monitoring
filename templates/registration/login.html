@@ -3,18 +3,26 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="card text-center">
-  <div class="card-header">
-    Login
+
+<div class="sidenav">
+  <div class="login-main-text">
+     <h2>Budget Monitoring System<br> Login Page</h2>
+     <p>Login or register from here to access.</p>
   </div>
-  <form class="user" method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-      {{ form|crispy }}
-    </div>
-    <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
-    <hr>
-  </form>
-  <p class="mt-2">or <a href="{% url 'django_registration_register' %}">Register</a></p>
 </div>
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+     <div class="login-form">
+        <form method="POST">
+           <div class="form-group">
+              {% csrf_token %}
+              {{ form|crispy }}
+           </div>
+           <button type="submit" class="btn btn-black">Login</button>
+        </form>
+        <p class="mt-2">or <a href="{% url 'django_registration_register' %}">Create account</a></p>
+     </div>
+  </div>
+</div>
+
 {% endblock %}
